@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+models/aise_solo_leveling.glb
+models/igris_sword.glb

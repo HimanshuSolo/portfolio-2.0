@@ -1,11 +1,11 @@
-import { ComingSoon } from "@/components/coming";
+import HomePage from "./Home/page";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-62 px-16 ">
-        <ComingSoon />
-      </main>
-    </div>
+    <>
+      <Navbar />
+      <HomePage />
+    </>
   );
 }
