@@ -1,16 +1,26 @@
 "use client";
 
-import React, { useRef, JSX, useEffect } from "react";
+import React, { useRef, JSX, useEffect, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import type { Object3D } from "three";
 import * as THREE from "three";
 
 export default function Model(props: JSX.IntrinsicElements["group"]) {
   const ref = useRef<Object3D | null>(null);
-  const gltf = useGLTF("/models/arise_solo_leveling.glb");
+  const [error, setError] = useState<string | null>(null);
+  
+  let gltf;
+  try {
+    // Using the smaller igris_sword model instead
+    gltf = useGLTF("/models/igris_sword.glb");
+  } catch (err) {
+    console.error("Failed to load model:", err);
+    setError(String(err));
+    return null;
+  }
 
   useEffect(() => {
-    if (ref.current && gltf.scene) {
+    if (ref.current && gltf?.scene) {
       gltf.scene.traverse((child: any) => {
         if (child instanceof THREE.Mesh && child.material) {
           // Enhance material properties - check if property exists first
@@ -30,9 +40,18 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
         }
       });
     }
-  }, [gltf.scene]);
+  }, [gltf?.scene]);
+
+  if (error) {
+    console.error("Model loading error:", error);
+    return null;
+  }
+
+  if (!gltf?.scene) {
+    return null;
+  }
 
   return <primitive ref={ref} object={gltf.scene} {...props} dispose={null} />;
 }
 
-useGLTF.preload("/models/arise_solo_leveling.glb");
+useGLTF.preload("/models/igris_sword.glb");
