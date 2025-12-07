@@ -53,7 +53,7 @@ export default function Scene() {
         <pointLight position={[-5, 5, 5]} intensity={0.4} color="#6366f1" />
         <pointLight position={[5, 3, -5]} intensity={0.3} color="#ec4899" />
         
-        <Suspense fallback={<Html center><div className="text-white text-sm">Loading model...</div></Html>}>
+        <Suspense fallback={<Html center><div className="text-white">Arise...</div></Html>}>
           <Model position={[0, -0.5, 0]} scale={1.5} rotation={[0, Math.PI / 4, 0]} />
         </Suspense>
         
