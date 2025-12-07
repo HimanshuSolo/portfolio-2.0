@@ -10,7 +10,7 @@ export default function HomePage() {
           <div className="mb-12">
 
             <h1 className="text-6xl font-bold mb-6 leading-tight">
-              Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-blue-800">Himanshu</span>
+              Hi, I'm <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-100 to-blue-800">Himanshu</span>
             </h1>
             <p className="text-2xl text-gray-300 font-light">
               Building intuitive, high-performance web applications
@@ -29,19 +29,19 @@ export default function HomePage() {
           </div>
 
           <div className="flex flex-wrap gap-3 mb-10">
-            <span className="px-4 py-2 text-sm bg-gradient-to-r from-blue-500/20 to-purple-600/20 text-violet-300 rounded-full border border-blue-500/30 hover:border-blue-500 transition">
+            <span className="px-4 py-2 text-sm bg-linear-to-r from-blue-500/20 to-purple-600/20 text-violet-300 rounded-full border border-blue-500/30 hover:border-blue-500 transition">
               DSA Enthusiast
             </span>
-            <span className="px-4 py-2 text-sm bg-gradient-to-r from-purple-600/20 to-pink-600/20 text-blue-300 rounded-full border border-purple-500/30 hover:border-purple-500 transition">
+            <span className="px-4 py-2 text-sm bg-linear-to-r from-purple-600/20 to-pink-600/20 text-blue-300 rounded-full border border-purple-500/30 hover:border-purple-500 transition">
               AI & ML Explorer
             </span>
-            <span className="px-4 py-2 text-sm bg-gradient-to-r from-pink-600/20 to-blue-500/20 text-pink-300 rounded-full border border-pink-500/30 hover:border-pink-500 transition">
+            <span className="px-4 py-2 text-sm bg-linear-to-r from-pink-600/20 to-blue-500/20 text-pink-300 rounded-full border border-pink-500/30 hover:border-pink-500 transition">
               Open Source
             </span>
           </div>
 
           <div className="flex gap-4">
-            <button className="px-8 py-3 bg-gradient-to-r from-blue-400 to-violet-900 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300">
+            <button className="px-8 py-3 bg-linear-to-r from-blue-400 to-violet-900 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300">
               View My Work
             </button>
             <button className="px-8 py-3 border-2 border-gray-600 text-white font-semibold rounded-lg hover:border-blue-500 hover:text-blue-400 transition-all duration-300">
