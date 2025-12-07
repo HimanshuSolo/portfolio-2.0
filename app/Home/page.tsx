@@ -1,11 +1,14 @@
 import React from "react";
 import Scene from "@/components/IgrisScene";
+import Navbar from "@/components/Navbar";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen w-full bg-[#393E46] text-white overflow-hidden">
       <section className="flex items-center justify-between w-full h-screen px-12 gap-16">
 
+        <Navbar />
+        
         <div className="flex-1 flex flex-col justify-center">
           <div className="mb-12">
 
