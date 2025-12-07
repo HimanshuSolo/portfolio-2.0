@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useRef, JSX, useEffect, useState } from "react";
+import React, { useRef, JSX, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import type { Object3D } from "three";
 import * as THREE from "three";
 
 export default function Model(props: JSX.IntrinsicElements["group"]) {
   const ref = useRef<Object3D | null>(null);
-  const [error, setError] = useState<string | null>(null);
   
   let gltf;
   try {
@@ -15,37 +14,35 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
     gltf = useGLTF("/models/igris_sword.glb");
   } catch (err) {
     console.error("Failed to load model:", err);
-    setError(String(err));
-    return null;
+    gltf = undefined;
   }
 
   useEffect(() => {
     if (ref.current && gltf?.scene) {
-      gltf.scene.traverse((child: any) => {
-        if (child instanceof THREE.Mesh && child.material) {
-          // Enhance material properties - check if property exists first
-          if ('metalness' in child.material) {
-            child.material.metalness = 0.7;
+      try {
+        gltf.scene.traverse((child: any) => {
+          if (child instanceof THREE.Mesh && child.material) {
+            // Enhance material properties - check if property exists first
+            if ('metalness' in child.material) {
+              child.material.metalness = 0.7;
+            }
+            if ('roughness' in child.material) {
+              child.material.roughness = 0.3;
+            }
+            if ('envMapIntensity' in child.material) {
+              child.material.envMapIntensity = 1.2;
+            }
+            
+            // Enable shadows
+            child.castShadow = true;
+            child.receiveShadow = true;
           }
-          if ('roughness' in child.material) {
-            child.material.roughness = 0.3;
-          }
-          if ('envMapIntensity' in child.material) {
-            child.material.envMapIntensity = 1.2;
-          }
-          
-          // Enable shadows
-          child.castShadow = true;
-          child.receiveShadow = true;
-        }
-      });
+        });
+      } catch (error) {
+        console.error("Error applying material properties:", error);
+      }
     }
   }, [gltf?.scene]);
-
-  if (error) {
-    console.error("Model loading error:", error);
-    return null;
-  }
 
   if (!gltf?.scene) {
     return null;

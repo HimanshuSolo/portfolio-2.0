@@ -5,29 +5,6 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Html, PerspectiveCamera, Environment } from "@react-three/drei";
 import Model from "./SwordModel";
 
-class ErrorBoundary extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError(error: any) {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error: any, errorInfo: any) {
-    console.error("3D Model Error:", error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return <Html center><div className="text-red-400 text-sm">Failed to load 3D model</div></Html>;
-    }
-
-    return this.props.children;
-  }
-}
-
 export default function Scene() {
   return (
     <div className="w-full h-full relative rounded-lg overflow-hidden">
@@ -77,9 +54,7 @@ export default function Scene() {
         <pointLight position={[5, 3, -5]} intensity={0.3} color="#ec4899" />
         
         <Suspense fallback={<Html center><div className="text-white text-sm">Loading model...</div></Html>}>
-          <ErrorBoundary>
-            <Model position={[0, -0.5, 0]} scale={1.5} rotation={[0, Math.PI / 4, 0]} />
-          </ErrorBoundary>
+          <Model position={[0, -0.5, 0]} scale={1.5} rotation={[0, Math.PI / 4, 0]} />
         </Suspense>
         
         <OrbitControls 
