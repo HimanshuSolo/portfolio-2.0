@@ -14,7 +14,13 @@ export default function Scene() {
         gl={{ 
           antialias: true, 
           alpha: true,
-          toneMappingExposure: 1.2
+          toneMappingExposure: 1.2,
+          powerPreference: "high-performance",
+          failIfMajorPerformanceCaveat: false,
+          preserveDrawingBuffer: false,
+        }}
+        onCreated={(state) => {
+          state.gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         }}
       >
         <PerspectiveCamera makeDefault position={[5, 0, 10]} fov={45} />
@@ -24,28 +30,28 @@ export default function Scene() {
         <directionalLight 
           castShadow 
           position={[6, 8, 6]} 
-          intensity={1.8}
+          intensity={1.2}
           color="#6366f1"
-          shadow-mapSize-width={2048}
-          shadow-mapSize-height={2048}
+          shadow-mapSize-width={1024}
+          shadow-mapSize-height={1024}
         />
         
         <directionalLight 
           position={[-6, 4, 5]} 
-          intensity={0.8}
+          intensity={0.6}
           color="#a855f7"
         />
         
         <directionalLight 
           position={[0, 2, -8]} 
-          intensity={1}
+          intensity={0.8}
           color="#ffffff"
         />
         
-        <ambientLight intensity={0.5} color="#4c1d95" />
+        <ambientLight intensity={0.4} color="#4c1d95" />
         
-        <pointLight position={[-5, 5, 5]} intensity={0.6} color="#6366f1" />
-        <pointLight position={[5, 3, -5]} intensity={0.4} color="#ec4899" />
+        <pointLight position={[-5, 5, 5]} intensity={0.4} color="#6366f1" />
+        <pointLight position={[5, 3, -5]} intensity={0.3} color="#ec4899" />
         
         <Suspense fallback={<Html center><div className="text-white">Arise...</div></Html>}>
           <Model position={[0, -0.5, 0]} scale={1.5} rotation={[0, Math.PI / 4, 0]} />
